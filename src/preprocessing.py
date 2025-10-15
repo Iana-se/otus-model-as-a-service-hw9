@@ -5,32 +5,44 @@ from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
 
 
+import pandas as pd
+
 def load_data() -> pd.DataFrame:
     """
-    Function to load the iris dataset from sklearn and return it as a pandas DataFrame.
+    Function to load the medical insurance dataset from a CSV file
+    and return it as a pandas DataFrame.
 
     Returns
     -------
     pd.DataFrame
-        The iris dataset as a pandas DataFrame.
+        The medical insurance dataset as a pandas DataFrame,
+        including an additional column 'target' (same as 'charges').
 
     Notes
     -----
-    The iris dataset is a classic dataset in machine learning and is used to demonstrate.
+    The dataset is expected to be located at './src/medical_data/insurance.csv'.
+    It contains columns such as:
+        - age
+        - sex
+        - bmi
+        - children
+        - smoker
+        - region
+        - charges
     """
-    iris = load_iris()
-    # pylint: disable=no-member
-    df = pd.DataFrame(iris.data, columns=iris.feature_names)
-    df = df.rename(
-        columns={
-            "sepal length (cm)": "sepal_length",
-            "sepal width (cm)": "sepal_width",
-            "petal length (cm)": "petal_length",
-            "petal width (cm)": "petal_width",
-        }
-    )
-    df["target"] = iris.target
+    # Загружаем CSV
+    df = pd.read_csv('./src/medical_data/insurance.csv')
+
+    # Проверим, что нужные колонки на месте
+    expected_cols = {"age", "sex", "bmi", "children", "smoker", "region", "charges"}
+    if not expected_cols.issubset(df.columns):
+        raise ValueError(f"Dataset is missing expected columns: {expected_cols - set(df.columns)}")
+
+    # Добавляем целевую переменную
+    df["target"] = df["charges"]
+
     return df
+
 
 
 def split_data(

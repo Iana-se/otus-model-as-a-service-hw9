@@ -35,8 +35,16 @@ up:
 	docker compose down || true
 	docker compose up --build
 
+# build-prod:
+# 	docker build -t otus-maas:0.0.2 -f Dockerfile.prod .
+
 build-prod:
-	docker build -t otus-maas:0.0.1 -f Dockerfile.prod .
+	docker buildx build \
+		--platform linux/amd64,linux/arm64 \
+		-t ianapol/otus-maas:0.0.3 \
+		-f Dockerfile.prod \
+		--push \
+		.
 
 run-prod:
 	docker run \
@@ -46,8 +54,8 @@ run-prod:
 		otus-maas:prod
 
 push-prod:
-	docker tag otus-maas:0.0.1 nickosipov/otus-maas:0.0.1
-	docker push nickosipov/otus-maas:0.0.1
+	docker tag otus-maas:0.0.1 ianapol/otus-maas:0.0.3
+	docker push ianapol/otus-maas:0.0.3
 
 helm-install-ingress:
 	helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx

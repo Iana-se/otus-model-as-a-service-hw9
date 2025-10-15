@@ -16,7 +16,7 @@ def main() -> None:
     Main pipeline for the project
     """
     logger.info("-----------------")
-    logger.info("Starting pipeline")
+    logger.info("Starting medical pipeline")
     logger.info("Loading data")
     df = load_data()
 
@@ -32,8 +32,8 @@ def main() -> None:
     save_model(model, model_path)
 
     logger.info("Evaluating model")
-    accuracy = evaluate_model(model, test)
-    logger.info(f"Model accuracy: {accuracy}")
+    metrics = evaluate_model(model, test)
+    logger.info(f"Model evaluation metrics: {metrics}")
 
     logger.info("Pipeline complete")
 

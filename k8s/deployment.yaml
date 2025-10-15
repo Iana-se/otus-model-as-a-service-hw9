@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: otus-maas
-          image: nickosipov/otus-maas:prod
+          image: ianapol/otus-maas:0.0.3
           ports:
             - containerPort: 8000
           resources:
