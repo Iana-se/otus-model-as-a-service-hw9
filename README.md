@@ -4,7 +4,7 @@
 Добавила код с моделью регресси, обучением ее на медицинских данных, а после разворачиванием в сервисе в кубере.     
 make build-prod.   
 make push-prod.  
-yc managed-kubernetes cluster get-credentials --id cat4khqqddeg8egpetvj --external.  
+yc managed-kubernetes cluster get-credentials --id <CUBER_CLUSTER_ID> --external.  
 make helm-install-ingress.  
 kubectl apply -f k8s/namespace.yaml.        
 kubectl config set-context --current --namespace=otus-maas.   
