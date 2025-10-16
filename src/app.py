@@ -72,7 +72,7 @@ from loguru import logger
 from src.inference import load_model, predict  # предполагаем, что функции load_model и predict уже есть
 
 logger.info("Loading model")
-MODEL_PATH = os.path.join("models", "insurance_cost_model.joblib")
+MODEL_PATH = os.path.join("models", "model.joblib")
 MODEL = load_model(MODEL_PATH)
 logger.info("Model loaded successfully")
 
