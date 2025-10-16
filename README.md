@@ -1,23 +1,14 @@
-# OTUS Model As a Service
+### ДЗ №9
+Действия:
+создаю kubernetis кластер.  
+Добавила код с моделью регресси, обучением ее на медицинских данных, а после разворачиванием в сервисе в кубере.     
+make build-prod.   
+make push-prod.  
+yc managed-kubernetes cluster get-credentials --id cat4khqqddeg8egpetvj --external.  
+make helm-install-ingress.  
+kubectl apply -f k8s/namespace.yaml.        
+kubectl config set-context --current --namespace=otus-maas.   
+kubectl apply -f k8s/deployment.yaml.    
+kubectl apply -f k8s/service.yaml.           
+kubectl apply -f k8s/ingress.yaml.    
 
-Установка:
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-```
-
-Ветка docker:
-```bash
-git checkout -t origin/docker
-```
-
-## План практики
-
-* Установим docker на vm
-* Напишем простой Dockerfile
-* Запустим простой контейнер
-* Подключимся внутрь контейнера
-* Запустим jupyter notebook в контейнере и подключимся к нему
-* Написать dev/prod Dockerfile и docker-compose для проекта c использованием FastAPI
-* Развернуть/протестировать ML модель в контейнере с использованием FastAPI
