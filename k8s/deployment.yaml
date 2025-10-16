@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: otus-maas
-          image: ianapol/otus-maas:0.0.3
+          image: ianapol/otus-maas:0.0.5
           ports:
             - containerPort: 8000
           resources:

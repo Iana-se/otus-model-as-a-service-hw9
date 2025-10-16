@@ -41,7 +41,7 @@ up:
 build-prod:
 	docker buildx build \
 		--platform linux/amd64,linux/arm64 \
-		-t ianapol/otus-maas:0.0.3 \
+		-t ianapol/otus-maas:0.0.5 \
 		-f Dockerfile.prod \
 		--push \
 		.
@@ -54,8 +54,8 @@ run-prod:
 		otus-maas:prod
 
 push-prod:
-	docker tag otus-maas:0.0.1 ianapol/otus-maas:0.0.3
-	docker push ianapol/otus-maas:0.0.3
+	docker tag otus-maas:0.0.5 ianapol/otus-maas:0.0.5
+	docker push ianapol/otus-maas:0.0.5
 
 helm-install-ingress:
 	helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
